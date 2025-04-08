@@ -47,6 +47,24 @@ def anomalias_page(user_id):
     try:
         df = load_data(user_id)
         if df is not None:
+            st.markdown("""
+                        En esta página se aplica un modelo de **detección de anomalías** utilizando el algoritmo **Isolation Forest** sobre tus actividades de **running**.  
+                        El objetivo es encontrar entrenamientos que se salgan de tu patrón habitual, ya sea por su duración, intensidad, velocidad o elevación.
+
+                        ### ¿Cómo funciona Isolation Forest?
+                        Isolation Forest es un algoritmo basado en árboles de decisión que **"aísla" observaciones inusuales**.  
+                        Funciona generando múltiples árboles aleatorios y dividiendo los datos por características seleccionadas al azar. Las observaciones que son más fáciles de aislar (es decir, que se separan en menos divisiones) son marcadas como **anómalas**, porque sus características son menos comunes comparadas con el resto del conjunto.
+
+                        Este método es rápido, eficiente y muy útil para detectar datos atípicos incluso en grandes volúmenes de información.
+
+                        ### ¿Para qué puede servirte?
+                        - Detectar errores en la recolección de datos (por ejemplo, GPS inexacto o fallos del dispositivo).
+                        - Identificar sesiones que no siguen tu ritmo habitual (muy suaves, intensas, largas o cortas).
+                        - Revisar entrenamientos únicos o fuera de lo común que podrían requerir una atención especial o un análisis más profundo.
+
+                        Se visualiza cada actividad en un gráfico interactivo, diferenciando claramente los entrenamientos normales de las posibles **anomalías**.
+                        """)
+
             expander1 = st.expander("Despliega para ver la tabla de datos")
             expander1.dataframe(df)
             deteccion_anomalias(df)

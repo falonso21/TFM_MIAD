@@ -49,6 +49,28 @@ def clustering_page(user_id):
         df = st.session_state.df
         
         if df is not None:
+            st.markdown("""
+            Esta página aplica **técnicas de clustering** (agrupamiento) usando el algoritmo **DBSCAN** sobre tus actividades deportivas de **running** y **ciclismo**.  
+            El objetivo es identificar **patrones ocultos** en tus entrenamientos, como sesiones similares en intensidad, duración o exigencia, agrupándolas automáticamente sin necesidad de clasificarlas manualmente.
+
+            ### ¿Cómo funciona DBSCAN?
+            **DBSCAN** (Density-Based Spatial Clustering of Applications with Noise) es un algoritmo de agrupamiento basado en densidad.  
+            Agrupa puntos que están **cerca unos de otros** y considera como *ruido* o *anomalía* aquellos que no encajan en ningún grupo.
+
+            Se basa en dos parámetros principales:
+            - `eps`: la distancia máxima entre dos puntos para que se consideren vecinos.
+            - `min_samples`: el número mínimo de puntos necesarios para formar un grupo denso.
+
+            Esto lo hace ideal para identificar **grupos de entrenamientos similares**, sin necesidad de especificar cuántos grupos debe haber.
+
+            ### ¿Para qué puede servirte?
+            - Detectar distintos tipos de entrenamientos que sueles realizar (por ejemplo: salidas suaves, sesiones intensas, rutas de montaña).
+            - Identificar posibles anomalías o entrenamientos atípicos.
+            - Analizar tu evolución agrupando actividades similares para comparar progresos.
+
+            Puedes ajustar los parámetros del algoritmo para afinar los resultados y explorar visualmente los grupos detectados en el gráfico interactivo.
+            """)
+
             expander1 = st.expander("Despliega para ver la tabla de datos")
             expander1.dataframe(df)
             
