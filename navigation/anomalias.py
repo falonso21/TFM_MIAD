@@ -42,10 +42,10 @@ def deteccion_anomalias(df):
     st.write("⚠️ Entrenamientos anómalos detectados:")
     st.dataframe(anomalies)
 
-def anomalias_page():
+def anomalias_page(user_id):
     st.title("Detección de anomalías")
     try:
-        df = load_data()
+        df = load_data(user_id)
         if df is not None:
             expander1 = st.expander("Despliega para ver la tabla de datos")
             expander1.dataframe(df)
