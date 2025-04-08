@@ -62,7 +62,7 @@ def obtener_actividades(email, password):
     
     return pd.DataFrame(activity_data)
 
-def home_page():
+def home_page(user_id):
     # st.image(GARMIN_LOGO)
     st.title("Bienvenido a Garmin Data")
     email = st.text_input("Introduce tu email de Garmin")
@@ -72,7 +72,7 @@ def home_page():
         if email and password:
             try:
                 df = obtener_actividades(email, password)
-                save_data(df)
+                save_data(df, user_id)
                 st.write(df)
                 st.success("Datos descargados correctamente")
             except Exception as e:
