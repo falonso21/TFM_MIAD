@@ -8,7 +8,7 @@ import streamlit as st
 if not os.path.exists("data"):
     os.makedirs("data")
 
-# Asegurarse de que 'user_id' exista en session_state
+# Asegurarse de que 'user_id' exista en session_state al principio de la app
 if "user_id" not in st.session_state:
     st.session_state["user_id"] = str(uuid.uuid4())  # Crear un ID único para la sesión
 
@@ -20,7 +20,6 @@ def get_user_file_path():
 def save_data(df):
     limpiar_archivos_antiguos("data")  # Limpieza automática
     df.to_csv(get_user_file_path(), index=False)
-    st.write(f"Datos guardados en {get_user_file_path()}")
 
 # Cargar los datos
 def load_data():
@@ -29,7 +28,6 @@ def load_data():
         return pd.read_csv(path)
     else:
         # Si el usuario aún no ha subido datos, puedes cargar un archivo base
-        st.warning('Puesto que usted no ha subido datos, la siguiente información ha sido generada con un archivo de muestra.', icon="⚠️")
         return pd.read_csv("data/actividades_muestra.csv")
 
 # Limpiar archivos viejos
