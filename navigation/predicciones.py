@@ -202,10 +202,10 @@ def prediction(df):
                         f"<strong>{nombre}</strong><br>⏳ {horas}h {minutos}m</div>", unsafe_allow_html=True)
 
 # Función de la página de predicciones
-def predicciones_page():
+def predicciones_page(user_id):
     st.title("Predicciones de carrera")
     try:
-        df = load_data()
+        df = load_data(user_id)
         if df is not None:
             expander1 = st.expander("Despliega para ver la tabla de datos")
             expander1.dataframe(df)
