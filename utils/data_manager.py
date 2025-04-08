@@ -7,43 +7,17 @@ import streamlit as st
 # Configuración de la página (Debe ser lo primero)
 st.set_page_config(page_title="Garmin Data", layout="wide")
 
-# Ruta de archivo para almacenar el user_id
-USER_ID_FILE = "data/user_id.txt"
-
 # Crear carpeta de datos si no existe
 if not os.path.exists("data"):
     os.makedirs("data")
 
-# Función para obtener el ID de usuario usando st.session_state
+# Función para obtener un ID de usuario único para cada sesión
 def get_user_id():
-    # Si ya tenemos un user_id en la sesión, devolverlo
-    if "user_id" in st.session_state:
-        return st.session_state["user_id"]
-    
-    # Si no, leer el archivo o generar un nuevo UUID
-    try:
-        if os.path.exists(USER_ID_FILE):
-            with open(USER_ID_FILE, "r") as file:
-                user_id = file.read().strip()
-        else:
-            user_id = str(uuid.uuid4())
-            with open(USER_ID_FILE, "w") as file:
-                file.write(user_id)
-        
-        # Guardar el user_id en session_state para usarlo durante toda la sesión
-        st.session_state["user_id"] = user_id
-        return user_id
-    except Exception as e:
-        st.error(f"Ocurrió un error al intentar acceder al archivo de usuario: {e}")
-        return None
+    # Generar un UUID único para cada sesión
+    return str(uuid.uuid4())
 
-# Obtener el ID de usuario
+# Obtener el ID de usuario único para esta sesión
 user_id = get_user_id()
-
-# Si no se pudo obtener un user_id, detener la ejecución
-if user_id is None:
-    st.error("No se pudo generar o cargar el User ID. La aplicación no puede continuar.")
-    st.stop()
 
 # Mostrar el user_id para verificar
 # st.write(f"User ID: {user_id}")
