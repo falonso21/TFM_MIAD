@@ -34,7 +34,7 @@ with st.sidebar:
 
 # Según la opción seleccionada, muestra la página correspondiente.
 if selected == "Home":
-    home.home_page()   # Envíale el user_id a la página
+    home.home_page(user_id)   # Envíale el user_id a la página
 elif selected == "Gráficos":
     graficos.graficos_page(user_id)
 elif selected == "Predicciones de carrera":
