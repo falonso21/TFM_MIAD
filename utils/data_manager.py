@@ -46,7 +46,7 @@ if user_id is None:
     st.stop()
 
 # Mostrar el user_id para verificar
-st.write(f"User ID: {user_id}")
+# st.write(f"User ID: {user_id}")
 
 # Nombre del archivo por usuario
 def get_user_file_path():
@@ -57,7 +57,7 @@ def save_data(df):
     limpiar_archivos_antiguos("data")  # Limpieza automática
     try:
         df.to_csv(get_user_file_path(), index=False)
-        st.write(f"Datos guardados en {get_user_file_path()}")
+        # st.write(f"Datos guardados en {get_user_file_path()}")
     except Exception as e:
         st.error(f"Ocurrió un error al intentar guardar los datos: {e}")
 
