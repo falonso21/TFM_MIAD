@@ -40,12 +40,12 @@ def aplicar_clustering(df, eps=0.5, min_samples=5):
     
     return df, fig
 
-def clustering_page():
+def clustering_page(user_id):
     st.title("Clustering de Actividades con DBSCAN")
     
     try:
         if 'df' not in st.session_state or st.button("Actualizar Datos"):
-            st.session_state.df = load_data()
+            st.session_state.df = load_data(user_id)
         df = st.session_state.df
         
         if df is not None:
