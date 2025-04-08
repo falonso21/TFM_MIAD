@@ -30,3 +30,5 @@ python -m streamlit run app.py
 ## Descripción
 
 Este proyecto se centra en la visualización de datos deportivos de un usuario de Garmin. Los datos pueden ser descargados y procesados para crear gráficos interactivos y realizar predicciones personalizadas basadas en el historial de actividad.
+
+Test
