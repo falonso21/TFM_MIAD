@@ -1,8 +1,8 @@
-import streamlit as st
 import os
 import uuid
 import time
 import pandas as pd
+import streamlit as st
 
 # Configuración de la página (Debe ser lo primero)
 st.set_page_config(page_title="Garmin Data", layout="wide")
@@ -65,12 +65,13 @@ def save_data(df):
 def load_data():
     path = get_user_file_path()
     try:
-        if os.path.exists(path):
-            return pd.read_csv(path)
-        else:
-            # Si el usuario aún no ha subido datos, puedes cargar un archivo base
+        # Si el archivo del usuario no existe, cargamos el archivo de muestra
+        if not os.path.exists(path):
             st.warning('Puesto que usted no ha subido datos, la siguiente información ha sido generada con un archivo de muestra.', icon="⚠️")
             return pd.read_csv("data/actividades_muestra.csv")
+        else:
+            # Si el archivo del usuario existe, cargamos los datos del archivo correspondiente
+            return pd.read_csv(path)
     except Exception as e:
         st.error(f"Ocurrió un error al intentar cargar los datos: {e}")
         return None
@@ -85,4 +86,4 @@ def limpiar_archivos_antiguos(directorio, edad_maxima_segundos=900):  # 15 minut
                 if ahora - os.path.getmtime(ruta) > edad_maxima_segundos:
                     os.remove(ruta)
             except Exception as e:
-                st.warning
+                st.warning(f"No se pudo eliminar el archivo {archivo}: {e}")
