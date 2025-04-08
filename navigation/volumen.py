@@ -88,11 +88,11 @@ def resaltar_filas_riesgo(row):
     return ['background-color: yellow' if row['Riesgo_Lesion'] == 'Alto' else '' for _ in row]
 
 # Página en Streamlit
-def volumen_semanal_page():
+def volumen_semanal_page(user_id):
     st.title("📅 Volumen Semanal de Entrenamiento")
     
     try:
-        df = load_data()
+        df = load_data(user_id)
         
         if df is not None:
             expander1 = st.expander("Despliega para ver la tabla de datos original")
