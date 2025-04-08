@@ -295,12 +295,12 @@ def mostrar_graficos(df):
 
 
 # Función de la página de gráficos
-def graficos_page():
+def graficos_page(user_id):
     st.title("Gráficos de Actividades")
 
     # Cargar los datos previamente descargados
     try:
-        df = load_data()
+        df = load_data(user_id)
         if df is not None:
             expander1= st.expander("Despliega para ver la tabla de datos")
             expander1.dataframe(df)
