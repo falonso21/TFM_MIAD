@@ -1,8 +1,11 @@
+import streamlit as st
 import os
 import uuid
 import time
 import pandas as pd
-import streamlit as st
+
+# Configuración de la página (Debe ser lo primero)
+st.set_page_config(page_title="Garmin Data", layout="wide")
 
 # Ruta de archivo para almacenar el user_id
 USER_ID_FILE = "data/user_id.txt"
@@ -82,4 +85,4 @@ def limpiar_archivos_antiguos(directorio, edad_maxima_segundos=900):  # 15 minut
                 if ahora - os.path.getmtime(ruta) > edad_maxima_segundos:
                     os.remove(ruta)
             except Exception as e:
-                st.warning(f"No se pudo eliminar el archivo {archivo}: {e}")
+                st.warning
