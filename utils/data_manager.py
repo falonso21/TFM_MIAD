@@ -29,6 +29,7 @@ def load_data():
         return pd.read_csv(path)
     else:
         # Si el usuario aún no ha subido datos, puedes cargar un archivo base
+        st.warning('Puesto que usted no ha subido datos, la siguiente información ha sido generada con un archivo de muestra.', icon="⚠️")
         return pd.read_csv("data/actividades_muestra.csv")
 
 # Limpiar archivos viejos
