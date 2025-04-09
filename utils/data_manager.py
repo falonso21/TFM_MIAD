@@ -27,7 +27,10 @@ def load_data(user_id):
         # Si el archivo del usuario no existe, se carga el CSV de muestra
         if not os.path.exists(path):
             st.warning('Puesto que no se han subido datos, se mostrará un archivo de muestra.', icon="⚠️")
-            return pd.read_csv("data/actividades_muestra.csv")
+            BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+            muestra_path = os.path.join(BASE_DIR, "..", "data", "actividades_muestra.csv")
+            return pd.read_csv(muestra_path)
+
         else:
             # Si el archivo existe, se cargan los datos
             return pd.read_csv(path)
