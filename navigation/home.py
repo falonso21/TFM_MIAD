@@ -65,6 +65,10 @@ def obtener_actividades(email, password):
 def home_page(user_id):
     # st.image(GARMIN_LOGO)
     st.title("Bienvenido a Garmin Data")
+    st.info("""
+    **¿No quieres ingresar tus credenciales?**  
+    Puedes explorar la app sin iniciar sesión. En ese caso, los datos que se mostrarán en todas las pestañas son ejemplos de muestra que no corresponden a ninguna cuenta real.
+    """)
     email = st.text_input("Introduce tu email de Garmin")
     password = st.text_input("Introduce tu contraseña de Garmin", type="password")
 

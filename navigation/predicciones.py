@@ -64,8 +64,8 @@ def prediction(df):
     # Espacio de búsqueda de hiperparámetros
     param_distributions = {
         "RandomForest": {"n_estimators": [50, 100, 200], "max_depth": [10, 20, None], "min_samples_split": [2, 5, 10]},
-        "GradientBoosting": {"n_estimators": [50, 100, 200], "learning_rate": [0.01, 0.1, 0.2], "max_depth": [3, 5, 10]},
-        "XGBoost": {"n_estimators": [50, 100, 200], "learning_rate": [0.01, 0.1, 0.2], "max_depth": [3, 5, 10]},
+        "GradientBoosting": {"n_estimators": [100, 200], "learning_rate": [0.1, 0.2], "max_depth": [5, 10]},
+        "XGBoost": {"n_estimators": [50, 100], "learning_rate": [0.1, 0.2], "max_depth": [5, 10]},
         "Lasso": {"alpha": [0.01, 0.1, 1.0, 10]},
         "ElasticNet": {"alpha": [0.01, 0.1, 1.0], "l1_ratio": [0.2, 0.5, 0.8]},
         "LightGBM": {"n_estimators": [50, 100, 200], "learning_rate": [0.01, 0.1, 0.2], "max_depth": [3, 5, 10]}
@@ -77,7 +77,7 @@ def prediction(df):
     # Entrenamiento de modelos
     for i, (name, model) in enumerate(models.items()):
         status_text.text(f"Entrenando modelo {name}...")
-        search = RandomizedSearchCV(model, param_distributions[name], n_iter=10, cv=3, random_state=42, scoring='neg_mean_absolute_error')
+        search = RandomizedSearchCV(model, param_distributions[name], n_iter=5, cv=3, random_state=42, scoring='neg_mean_absolute_error')
         search.fit(X_train, y_train)
         best_models[name] = search.best_estimator_
         best_scores[name] = -search.best_score_
